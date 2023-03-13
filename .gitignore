@@ -14,6 +14,7 @@ client/*/src/contracts
 coverage
 
 # Env
+.idea
 .env
 .env.local
 .env.development.local
