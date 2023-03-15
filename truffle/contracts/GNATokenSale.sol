@@ -8,7 +8,7 @@ contract GNATokenSale is Crowdsale {
         address payable wallet,
         IERC20 token
     )
-    MintedCrowdsale()
+
     Crowdsale(rate, wallet, token)
     public
     {
