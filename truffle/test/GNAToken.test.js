@@ -36,12 +36,12 @@ contract("Token test", async accounts => {
         return expect(instance.balanceOf(recipient)).to.eventually.be.a.bignumber.that.equals(new BN(sendTokens));
     });
 
-    // it("is not possible to send more tokens than account 1 has", async () => {
-    //     let instance = this.myToken;
-    //     let balanceOfAccount = await instance.balanceOf(deployerAccount);
-    //     expect(instance.transfer(recipient, new BN(balanceOfAccount+1))).to.eventually.be.rejected;
-    //     //Check if the balance is still the same
-    //     expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(balanceOfAccount);
-    // });
+    it("is not possible to send more tokens than account 1 has", async () => {
+        let instance = this.myToken;
+        let balanceOfAccount = await instance.balanceOf(deployerAccount);
+        expect(instance.transfer(recipient, new BN(balanceOfAccount+1))).to.eventually.be.rejected;
+        //Check if the balance is still the same
+        expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(balanceOfAccount);
+    });
 
 });

@@ -1,32 +1,33 @@
 const Token = artifacts.require("GNAToken");
 const TokenSale = artifacts.require("GNATokenSale");
 
-require('dotenv').config({ path: '../.env'});
-
-let chai = require("chai");
-const BN2 = web3.utils.BN;
-const chaiBN2 = require("chai-bn")(BN2);
-chai.use(chaiBN2);
-
-let chaiAsPromised2 = require("chai-as-promised");
-chai.use(chaiAsPromised2);
-
+const chai = require("./setupChai.js");
+const BN = web3.utils.BN;
 const expect = chai.expect;
 
-contract("TokenSale test", async accounts => {
+contract("TokenSale", async function(accounts) {
+    const [ deployerAccount, recipient, anotherAccount ] = accounts;
 
-    const [deployerAccount, recipient, anotherAccount] = accounts;
-
-    // it("should not have any tokens in my account", async () => {
-    //     let instance = await Token.deployed();
-    //     return expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(new BN(0));
-    // });
-
-    it("all tokens should be in the TokenSale smart contract by default", async () => {
+    it("there shouldn't be any coins in my account", async () => {
         let instance = await Token.deployed();
-        let totalSupply = await instance.totalSupply();
-        return expect(instance.balanceOf(TokenSale.address)).to.eventually.be.a.bignumber.that.equals(totalSupply);
+        return expect(instance.balanceOf.call(deployerAccount)).to.eventually.be.a.bignumber.equal(new BN(0));
     });
 
+    it("all coins should be in the tokensale smart contract", async () => {
+        let instance = await Token.deployed();
+        let balance = await instance.balanceOf.call(TokenSale.address);
+        let totalSupply = await instance.totalSupply.call();
+        return expect(balance).to.be.a.bignumber.equal(totalSupply);
+    });
+
+    it("should be possible to buy one token by simply sending ether to the smart contract", async () => {
+        let tokenInstance = await Token.deployed();
+        let tokenSaleInstance = await TokenSale.deployed();
+        let balanceBeforeAccount = await tokenInstance.balanceOf.call(recipient);
+
+        await expect(tokenSaleInstance.sendTransaction({from: recipient, value: web3.utils.toWei("1", "wei")})).to.be.fulfilled;
+        return expect(balanceBeforeAccount + 1).to.be.bignumber.equal(await tokenInstance.balanceOf.call(recipient));
+
+    });
 
 });
