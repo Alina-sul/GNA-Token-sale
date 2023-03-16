@@ -23,25 +23,25 @@ contract("Token test", async accounts => {
         let instance = this.myToken;
         let totalSupply = await instance.totalSupply();
         let balance = await instance.balanceOf(deployerAccount);
-        expect(balance).to.be.a.bignumber.that.equals(totalSupply);
+        return expect(balance).to.be.a.bignumber.that.equals(totalSupply);
     } );
 
     it("is possible to send tokens between accounts", async () => {
         const sendTokens = 1;
         let instance = this.myToken;
         let totalSupply = await instance.totalSupply();
-        expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(totalSupply);
-        expect(instance.transfer(recipient, sendTokens)).to.eventually.be.fulfilled;
-        expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(totalSupply.sub(new BN(sendTokens)));
-        expect(instance.balanceOf(recipient)).to.eventually.be.a.bignumber.that.equals(new BN(sendTokens));
+        await expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(totalSupply);
+        await expect(instance.transfer(recipient, sendTokens)).to.eventually.be.fulfilled;
+        await expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(totalSupply.sub(new BN(sendTokens)));
+        return expect(instance.balanceOf(recipient)).to.eventually.be.a.bignumber.that.equals(new BN(sendTokens));
     });
 
-    // it("is not possible to send more tokens than account 1 has", async () => {
-    //     let instance = this.myToken;
-    //     let balanceOfAccount = await instance.balanceOf(deployerAccount);
-    //     expect(instance.transfer(recipient, new BN(balanceOfAccount+1))).to.eventually.be.rejected;
-    //     //Check if the balance is still the same
-    //     expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(balanceOfAccount);
-    // });
+    it("is not possible to send more tokens than account 1 has", async () => {
+        let instance = this.myToken;
+        let balanceOfAccount = await instance.balanceOf(deployerAccount);
+        expect(instance.transfer(recipient, new BN(balanceOfAccount+1))).to.eventually.be.rejected;
+        //Check if the balance is still the same
+        expect(instance.balanceOf(deployerAccount)).to.eventually.be.a.bignumber.that.equals(balanceOfAccount);
+    });
 
 });
