@@ -2,6 +2,9 @@
 
 This repository contains the source code for a decentralized application (dApp) built using React, Solidity, and Web3.js. The project demonstrates the use of smart contracts on the Ethereum blockchain to manage token sales and KYC whitelisting.
 
+<img width="795" alt="image" src="https://user-images.githubusercontent.com/48648714/226048318-2deca5c3-527b-4ef6-8227-c07ab212ec69.png">
+
+
 ## Getting Started
 
 These instructions will help you set up and run the project on your local machine for development and testing purposes.
