@@ -4,4 +4,26 @@
     text-align: center;
     margin-top: 10%;
   }
+
+  &__enable-account-card {
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  &__buy-tokens {
+    margin-top: 20px;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+
+    div {
+      line-height: 2.5rem;
+    }
+  }
+
+  &__buy-tokens-button {
+    margin-top: 10%;
+    text-align: center;
+  }
 }
