@@ -1,39 +1,46 @@
-# React Truffle Box
+# GNA Token Sale
 
-This box comes with everything you need to start using Truffle to write, compile, test, and deploy smart contracts, and interact with them from a React app.
+This repository contains the source code for a decentralized application (dApp) built using React, Solidity, and Web3.js. The project demonstrates the use of smart contracts on the Ethereum blockchain to manage token sales and KYC whitelisting.
 
-## Installation
+## Getting Started
 
-First ensure you are in an empty directory.
+These instructions will help you set up and run the project on your local machine for development and testing purposes.
 
-Run the `unbox` command using 1 of 2 ways.
+### Prerequisites
 
-```sh
-# Install Truffle globally and run `truffle unbox`
-$ npm install -g truffle
-$ truffle unbox react
+- [Node.js](https://nodejs.org/) v14.x or later
+- [Truffle](https://www.trufflesuite.com/truffle) v5.x or later
+- [Ganache](https://www.trufflesuite.com/ganache) for a local Ethereum blockchain
+- [MetaMask](https://metamask.io/) browser extension for interacting with the dApp
+
+### Installation
+
+1. Clone the repository:
+```
+git clone https://github.com/Alina-sul/GNA-Token-sale.git
 ```
 
-```sh
-# Alternatively, run `truffle unbox` via npx
-$ npx truffle unbox react
+2. Install the project dependencies:
+```
+npm i
 ```
 
-Start the react dev server.
 
-```sh
-$ cd client
-$ npm start
+### Running the project
+
+1. Start Ganache to set up a local Ethereum blockchain.
+
+2. Compile and deploy the smart contracts:
+
+```
+truffle compile
+truffle migrate --reset
 ```
 
-From there, follow the instructions on the hosted React app. It will walk you through using Truffle and Ganache to deploy the `SimpleStorage` contract, making calls to it, and sending transactions to change the contract's state.
+4. Open your browser and navigate to `http://localhost:8080` to interact with the dApp.
 
-## FAQ
+5. Connect your MetaMask to the local Ganache network and import accounts using the private keys provided by Ganache.
 
-- __How do I use this with Ganache (or any other network)?__
+## License
 
-  The Truffle project is set to deploy to Ganache by default. If you'd like to change this, it's as easy as modifying the Truffle config file! Check out [our documentation on adding network configurations](https://trufflesuite.com/docs/truffle/reference/configuration/#networks). From there, you can run `truffle migrate` pointed to another network, restart the React dev server, and see the change take place.
-
-- __Where can I find more resources?__
-
-  This Box is a sweet combo of [Truffle](https://trufflesuite.com) and [Webpack](https://webpack.js.org). Either one would be a great place to start!
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
