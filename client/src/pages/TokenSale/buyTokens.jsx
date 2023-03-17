@@ -6,17 +6,19 @@ function BuyTokens({ enabledAccount }) {
   return (
     <div className="token-sale-page__buy-tokens">
       <div>
-        Sent Ether to this address:{' '}
+        <span style={{ fontWeight: '500' }}>Sent Ether to this address:</span>{' '}
         {!enabledAccount.address && (
           <span
             style={{ fontStyle: 'italic', color: '#ababab', fontWeight: '300' }}
           >
-            no address selected
+            no address inserted
           </span>
         )}
         {enabledAccount.address}
       </div>
-      <div>Token Balance: 0</div>
+      <div>
+        <span style={{ fontWeight: '500' }}>Token Balance:</span> 0
+      </div>
       <div className="token-sale-page__buy-tokens-button">
         <Button size={'large'}> BUY TOKENS</Button>{' '}
       </div>
@@ -25,7 +27,7 @@ function BuyTokens({ enabledAccount }) {
 }
 
 BuyTokens.propTypes = {
-  enabledAccount: PropTypes.string.isRequired,
+  enabledAccount: PropTypes.object.isRequired,
 };
 
 export default BuyTokens;

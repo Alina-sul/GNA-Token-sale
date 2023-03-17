@@ -1,9 +1,5 @@
-import { EthProvider } from "./contexts/EthContext";
-import Intro from "./components/Intro/";
-import Setup from "./components/Setup";
-import Demo from "./components/Demo";
-import Footer from "./components/Footer";
-import TokenSale from "./pages/TokenSale";
+import { EthProvider } from './contexts/EthContext';
+import TokenSale from './pages/TokenSale';
 
 function App() {
   return (
