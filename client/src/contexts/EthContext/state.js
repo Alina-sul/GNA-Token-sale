@@ -3,11 +3,10 @@ const actions = {
 };
 
 const initialState = {
-  artifact: null,
-  web3: null,
-  accounts: null,
-  networkID: null,
-  contract: null
+  loading: false,
+  gnaToken: null,
+  gnaTokenSale: null,
+  kycContract: null,
 };
 
 const reducer = (state, action) => {
