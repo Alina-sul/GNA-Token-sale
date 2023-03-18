@@ -29,7 +29,14 @@ function EthProvider({ children }) {
         dispatch({
           type: actions.init,
           data: {
-            [contractKey]: { artifact, web3, accounts, networkID, contract },
+            [contractKey]: {
+              artifact,
+              web3,
+              accounts,
+              networkID,
+              contract,
+              address,
+            },
           },
         });
       }
